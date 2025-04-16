@@ -6,9 +6,14 @@
 #    By: oishchen <oishchen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/16 11:37:46 by oishchen          #+#    #+#              #
-#    Updated: 2025/04/16 17:30:59 by oishchen         ###   ########.fr        #
+#    Updated: 2025/04/16 18:57:51 by oishchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+RESET_COLOR = \033[0m #RESET THE DEFAULT COLOR
+GREEN = \033[1;32m
+
+
 
 NAME=mixlibft.a
 CC = cc
@@ -16,7 +21,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 #DIRs
-GNL_DIR=get_nex_line
+GNL_DIR=get_next_line
 PRINTF_DIR=printf
 LIBFT_DIR=libft
 
@@ -56,14 +61,15 @@ LIBFT_SRCS = $(addprefix $(LIBFT_DIR_SRC)/, $(LIBFT_SRC_FILES))
 #OBJs
 PRINTF_OBJS=$(PRINTF_SRCS:$(PRINTF_DIR_SRC)/%.c=$(PRINTF_DIR_OBJ)/%.o)
 GNL_OBJS=$(GNL_SRCS:$(GNL_DIR_SRC)/%.c=$(GNL_DIR_OBJ)/%.o)
-LIBFT_OBJS=$(LIBFT_SRCS:$(LIBFT_DIR_SRC)/.%c=$(LIBFT_DIR_OBJ)/%.o)
+LIBFT_OBJS=$(LIBFT_SRCS:$(LIBFT_DIR_SRC)/%.c=$(LIBFT_DIR_OBJ)/%.o)
 
 OBJS=$(PRINTF_OBJS) $(GNL_OBJS) $(LIBFT_OBJS)
 
 all:$(NAME)
-
+	
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
+	@echo "$(GREEN)MIXLIB was created successfully$(RESET_COLOR)"
 
 $(PRINTF_DIR_OBJ):
 	@mkdir -p $(PRINTF_DIR_OBJ)
@@ -71,22 +77,24 @@ $(PRINTF_DIR_OBJ):
 $(GNL_DIR_OBJ):
 	@mkdir -p $(GNL_DIR_OBJ)
 
-$(LIBFT_DIR):
-	@mkdir -p $(LIBFT_DIR)
+$(LIBFT_DIR_OBJ):
+	@mkdir -p $(LIBFT_DIR_OBJ)
 
-$(PRINTF_DIR_OBJ)%/.o: $(PRINTF_DIR_SRC)/%.c | $(PRINTF_DIR_OBJ)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(PRINTF_DIR_OBJ)/%.o: $(PRINTF_DIR_SRC)/%.c | $(PRINTF_DIR_OBJ)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(GNL_DIR_OBJ)/%.o: $(GNL_DIR_SRC)/%.c | $(GNL_DIR_OBJ)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(LIBFT_DIR_OBJ)/%.o: $(LIBFT_DIR_SRC)/%.c | $(LIBFT_DIR_OBJ)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
-	@(RM) $(OBJS)
+	@$(RM) $(OBJS)
+	@echo "$(GREEN)Objects were deleted successfully"
 
 fclean: clean
-	@(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "$(GREEN)Library was deleted successfully"
 
 re: fclean all
