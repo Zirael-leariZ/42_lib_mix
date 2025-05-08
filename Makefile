@@ -6,7 +6,7 @@
 #    By: oishchen <oishchen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/16 11:37:46 by oishchen          #+#    #+#              #
-#    Updated: 2025/04/16 18:57:51 by oishchen         ###   ########.fr        #
+#    Updated: 2025/05/08 10:18:05 by oishchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,10 +91,10 @@ $(LIBFT_DIR_OBJ)/%.o: $(LIBFT_DIR_SRC)/%.c | $(LIBFT_DIR_OBJ)
 
 clean:
 	@$(RM) $(OBJS)
-	@echo "$(GREEN)Objects were deleted successfully"
+	@echo "$(GREEN)Objects were deleted successfully$(RESET_COLOR)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(GREEN)Library was deleted successfully"
+	@echo "$(GREEN)Library was deleted successfully$(RESET_COLOR)"
 
 re: fclean all
