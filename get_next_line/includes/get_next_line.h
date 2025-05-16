@@ -6,7 +6,7 @@
 /*   By: oishchen <oishchen@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:33:31 by oishchen          #+#    #+#             */
-/*   Updated: 2025/04/01 16:36:36 by oishchen         ###   ########.fr       */
+/*   Updated: 2025/05/16 11:51:19 by oishchen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-int		ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 void	*ft_memcpy(void *to, const void *from, size_t len);
 char	*ft_strdup(const char *s1);
