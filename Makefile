@@ -6,7 +6,7 @@
 #    By: oishchen <oishchen@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/16 11:37:46 by oishchen          #+#    #+#              #
-#    Updated: 2025/05/08 10:18:45 by oishchen         ###   ########.fr        #
+#    Updated: 2025/05/19 16:33:46 by oishchen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,17 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)MIXLIB was created successfully$(RESET_COLOR)"
+
+$(LIBFT_LIB):
+	@$(MAKE) -C $(LIBFT_DIR)
+
+# Rule to build printf.a
+$(PRINTF_LIB):
+	@$(MAKE) -C $(PRINTF_DIR)
+
+# Rule to build get_next_line.a
+$(GNL_LIB):
+	@$(MAKE) -C $(GNL_DIR)
 
 $(PRINTF_DIR_OBJ):
 	@mkdir -p $(PRINTF_DIR_OBJ)
